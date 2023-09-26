@@ -6,6 +6,13 @@
     <title>
         <?php echo "Practica 1"; 
         ?></title>
+        <!-- <style>
+            div {
+                
+                margin: 10px;
+                padding: 10px;
+            }
+        </style> -->
 </head>
 <body>
     <?php
@@ -40,5 +47,52 @@
         <li>I midei <?php echo $mide; ?> metros</li>
     </ul>
 
+    <?php
+        // Definimos una constante IVA con un valor específico (por ejemplo, 21%)
+        define('IVA', 0.21);
+
+        // Declaramos un array de objetos de cursos
+        $cursos = [
+            [
+                'ID' => 1,
+                'NOM' => 'PHP',
+                'DESC' => 'Introducció a PHP',
+                'PREU' => 15.5
+            ],
+            [
+                'ID' => 2,
+                'NOM' => 'Laravel',
+                'DESC' => 'Laravel per experts',
+                'PREU' => 30
+            ],
+            [
+                'ID' => 3,
+                'NOM' => 'Django',
+                'DESC' => 'Dominant Django',
+                'PREU' => 10
+            ]
+        ];
+
+        $longitud = count($cursos);
+    ?>
+
+    <?php echo "<h1>Llista de cursos</h1>"; ?>
+    <?php echo "<h2>Numero de cursos apuntats: ".$longitud."</h2>" ; ?>
+    <div style="border: 1px solid black;">
+        <?php
+            // Recorremos el array de cursos con un bucle for
+            for ($i = 0; $i < count($cursos); $i++) {
+                echo "<div style='border: 1px solid black; '>";
+                echo "<h3>".$cursos[$i]['NOM'] . "</h3><br>";
+                echo "<p>".$cursos[$i]['DESC'] . "</p><br>";
+                
+                // Calculamos el precio con IVA
+                $preuSenseIVA = $cursos[$i]['PREU'];
+                $preuAmbIVA = $preuSenseIVA + ($preuSenseIVA * IVA);
+                echo "<p>El preu del libre amb IVA: ".$preuAmbIVA . "</p><br>";
+                echo "</div>";
+            }    
+        ?>
+    </div>
 </body>
 </html>
